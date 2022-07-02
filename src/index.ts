@@ -32,9 +32,19 @@ class Decorator {
         console.log(dp);
         return res;
     }
+
+    *fibGenerators(n: number): any {
+        const dp: any = {};
+        if (dp[n]) return dp[n];
+        if (n < 2) return n;
+        dp[n] = yield this.fibGenerators(n - 1) + this.fibGenerators(n - 2);
+        return dp[n];
+    }
 }
 
 const check = new Decorator();
 
-const result = check.fibUtil(50);
-console.log(result);
+// const result = check.fibUtil(50);
+
+const resultGen = check.fibGenerators(5);
+console.log(resultGen.next());

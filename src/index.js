@@ -40,6 +40,15 @@ class Decorator {
         console.log(dp);
         return res;
     }
+    *fibGenerators(n) {
+        const dp = {};
+        if (dp[n])
+            return dp[n];
+        if (n < 2)
+            return n;
+        dp[n] = yield this.fibGenerators(n - 1) + this.fibGenerators(n - 2);
+        return dp[n];
+    }
 }
 __decorate([
     timeCalculator(),
@@ -48,5 +57,6 @@ __decorate([
     __metadata("design:returntype", Number)
 ], Decorator.prototype, "fibUtil", null);
 const check = new Decorator();
-const result = check.fibUtil(50);
-console.log(result);
+// const result = check.fibUtil(50);
+const resultGen = check.fibGenerators(5);
+console.log(resultGen.next());

@@ -2,6 +2,7 @@ declare function timeCalculator(): (target: any, propertyKey: string, descriptor
 declare class Decorator {
     fibUtil(n: number): number;
     fib(n: number): any;
+    fibGenerators(n: number): any;
 }
 declare const check: Decorator;
-declare const result: number;
+declare const resultGen: any;
